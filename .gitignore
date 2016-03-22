@@ -1,0 +1,7 @@
+*.pyc
+__pycache__
+myvenv2
+venv
+project_pipeline
+db.sqlite3
+.DS_Store
