@@ -2,7 +2,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from pipeline.models import Frontpage, Pipeline
 from pipeline.forms import PipelineForm
-from django.db.models import Count
+from django.db.models import Count, Max
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
@@ -12,39 +12,39 @@ def index(request):
     context = {'latest_frontpage_list': latest_frontpage_list}
     return render(request, 'pipeline/index.html', context)
 
+
 @login_required
 def data_input(request):
     if request.method == "POST":
         form = PipelineForm(request.POST)
         if form.is_valid():
             form.save()
-        # return redirect('blog.views.post_detail', pk=post.pk)
     else:
         form = PipelineForm()
     return render(request, 'pipeline/data_input.html', {'form': form})
 
+
+@login_required
 def data_modify(request):
     if request.method == "POST":
-        # project = Pipeline.objects. 링크 누른 해당 플젝의 코드를 가지고 최신날짜 플젝정보를 가져온다.
-
-
-
+        form = PipelineForm(request.POST)
+        if form.is_valid():
+            form.save()
     else:
         form = PipelineForm()
+    return render(request, 'pipeline/data_input.html', {'form': form})
 
-    return render(request, 'pipeline/data_modify.html', {'form': form})
+        # project = Pipeline.objects. 링크 누른 해당 플젝의 코드를 가지고 최신날짜 플젝정보를 가져온다.
+
 
 @login_required
 def project_status(request):
     pipeline_list = Pipeline.objects.all()
     participation_list = Pipeline.objects.all().values('project_leader', 'project_team').annotate(
-        total=Count('project_leader')).order_by()
+        total=Count('project_leader')).annotate(max('created_at').order_by()
     # 팀별 프로젝트 주관 횟수
-    team_list = Pipeline.objects.all().filter(project_status="In-Progress").values('project_team',
-                                                                                   'project_status').annotate(
-        total=Count('project_team')).order_by()
-
-    # select * from pipelines group by project_team order by project_team
+    # return redirect('blog.views.post_detail', pk=post.pk)
+    team_list = Pipeline.objects.all().filter(project_status="In-Progress").values('project_team', 'project_status').annotate(total=Count('project_team')).order_by()
 
     temp_list = []
     staffcount = {}

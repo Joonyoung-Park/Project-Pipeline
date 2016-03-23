@@ -69,7 +69,7 @@
                 {% for pipeline in pipeline_list %}
                 <tbody>
                     <tr>
-                        <td>{{ pipeline.project_name }}</td>
+                        <td><a href="/pipeline/{{ pipeline.id }}/"/>{{ pipeline.project_name }}</td>
                         <td>{{ pipeline.start_date }}</td>
                         <td>{{ pipeline.end_date }}</td>
                         <td>{{ pipeline.project_leader }}</td>

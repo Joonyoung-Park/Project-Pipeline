@@ -5,7 +5,7 @@ class Frontpage(models.Model):
 	frontpage_text = models.CharField(max_length=200)
 	frontpage_url = models.CharField(max_length=200)
 
-	def __unicode__(self): # __str__ on Python 3
+	def __unicode__(self):  # __str__ on Python 3
 		return self.frontpage_text
 
 
@@ -18,6 +18,7 @@ class Pipeline(models.Model):
 	project_staffing = models.CharField(max_length=200)
 	project_status = models.CharField(max_length=200)
 	project_team = models.CharField(max_length=200)
+	created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
 
-	def __unicode__(self): # __str__ on Python 3
+	def __unicode__(self):  # __str__ on Python 3
 		return self.project_name

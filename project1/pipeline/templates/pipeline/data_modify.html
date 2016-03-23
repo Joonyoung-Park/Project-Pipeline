@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en-us" >
+<head>
+	<title>Change pipeline | Django site admin</title>
+	<link rel="stylesheet" type="text/css" href="http://127.0.0.1:8000/static/admin/css/base.css" />
+	<link rel="stylesheet" type="text/css" href="http://127.0.0.1:8000/static/admin/css/forms.css" />
+	<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="/static/admin/css/ie.css" /><![endif]-->
+	<script type="text/javascript">window.__admin_media_prefix__ = "http://127.0.0.1:8000/static/admin/";</script>
+	<script type="text/javascript">window.__admin_utc_offset__ = "32400";</script>
+	<script type="text/javascript" src="http://127.0.0.1:8000/admin/jsi18n/"></script>
+	<script type="text/javascript" src="http://127.0.0.1:8000/static/admin/js/core.js"></script>
+	<script type="text/javascript" src="http://127.0.0.1:8000/static/admin/js/admin/RelatedObjectLookups.js"></script>
+	<script type="text/javascript" src="http://127.0.0.1:8000/static/admin/js/jquery.js"></script>
+	<script type="text/javascript" src="http://127.0.0.1:8000/static/admin/js/jquery.init.js"></script>
+	<script type="text/javascript" src="http://127.0.0.1:8000/static/admin/js/actions.js"></script>
+	<script type="text/javascript" src="http://127.0.0.1:8000/static/admin/js/calendar.js"></script>
+	<script type="text/javascript" src="http://127.0.0.1:8000/static/admin/js/admin/DateTimeShortcuts.js"></script>
+	<meta name="robots" content="NONE,NOARCHIVE" />
+</head>
+
+<body class=" app-pipeline model-pipeline change-form">
+<!-- Container -->
+	<div id="container">
+
+    <!-- Content -->
+    <div id="content" class="colM">
+        <h1>Change pipeline</h1>
+        <div id="content-main">
+
+<!-- url 'pipeline:submit' -->
+<form class="post-form" enctype="multipart/form-data" action="/pipeline/data_input/" method="post" id="pipeline_form" novalidate>{% csrf_token %}
+<div>
+  <fieldset class="module aligned ">
+
+        <div class="form-row field-project_name">
+                <div>
+                        <label class="required" for="id_project_name">Project name:</label>
+                        <input class="vTextField" id="id_project_name" maxlength="200" name="project_name" type="text" value="{{ project_name }}" />
+                </div>
+        </div>
+        <div class="form-row field-start_date">
+                <div>
+                        <label class="required" for="id_start_date_0">Start_date:</label>
+                            <p class="datetime">Date: <input class="vDateField" id="id_start_date_0" name="start_date" size="10" type="text" value="{{ start_date }}" /><br />
+                            </p>
+                </div>
+        </div>
+        <div class="form-row field-end_date">
+                <div>
+                        <label class="required" for="id_end_date_0">End_date:</label>
+                            <p class="datetime">Date: <input class="vDateField" id="id_end_date_0" name="end_date" size="10" type="text" value="{{ end_date }}" /><br />
+                            </p>
+                </div>
+        </div>
+        <div class="form-row field-project_leader">
+                <div>
+                        <label class="required" for="id_project_leader">Project leader:</label>
+                            <input class="vTextField" id="id_project_leader" maxlength="200" name="project_leader" type="text" value="{{ project_leader }}" />
+                </div>
+        </div>
+        <div class="form-row field-project_staffing">
+                <div>
+                        <label class="required" for="id_project_staffing">Project staffing:</label>
+                            <input class="vTextField" id="id_project_staffing" maxlength="200" name="project_staffing" type="text" value="{{ project_staffing }}" />
+                </div>
+        </div>
+        <div class="form-row field-project_status">
+                <div>
+                        <label class="required" for="id_project_status">Project status:</label>
+                        <input class="vTextField" id="id_project_status" maxlength="200" name="project_status" type="text" value="{{ project_status }}" />
+                </div>
+        </div>
+        <div class="form-row field-project_team">
+                <div>
+                        <label class="required" for="id_project_team">Project team:</label>
+                        <input class="vTextField" id="id_project_team" maxlength="200" name="project_team" type="text" value="{{ project_team }}" />
+                </div>
+        </div>
+</fieldset>
+</div>
+<div class="submit-row">
+<input type="submit" value="Save" class="default" name="_save" />
+</div>
+
+<script type="text/javascript">
+(function($) {
+    var field;
+})(django.jQuery);
+</script>
+
+</div>
+</form></div>
+        <br class="clear" />
+    </div>
+    <!-- END Content -->
+    <div id="footer"></div></div>
+<!-- END Container -->
+</body>
+</html>
