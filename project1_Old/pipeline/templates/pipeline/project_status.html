@@ -1,0 +1,88 @@
+{% load staticfiles %}
+<html>
+	<head>
+		<title>Project Pipeline and Staffing</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="{% static 'css/pipeline.css' %}">
+		<style>
+			h1 {	text-align: center;	color: black;	}
+			body {
+				height: 100%;
+				font-family: "현대하모니 M"
+			}
+			table {
+				width: 100%;
+				border: 1px dotted gray;
+				text-align: left;
+			}
+			table caption {
+				color: black;
+				text-decoration: underline;
+				font-size: 2.0em;
+			}
+			th {
+				background-color: #CCCAC4;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<h1> 프로젝트 파이프라인 / 스태핑 현황 </h1>
+		</div>
+		<div>
+			<h2> 프로젝트 현황 </h2>
+			<table>
+				<tr>
+					<th>Project_Name</th>
+					<th>Start_date</th>
+					<th>End_date</th>
+					<th>Project_leader</th>
+					<th>Project_staffing</th>
+					<th>Project_status</th>
+					<th>Project_team</th>
+				</tr>
+				{% for pipeline in pipeline_list %}
+				<tr>
+					<td>{{ pipeline.project_name }}</td>
+					<td>{{ pipeline.start_date }}</td>
+					<td>{{ pipeline.end_date }}</td>
+					<td>{{ pipeline.project_leader }}</td>
+					<td>{{ pipeline.project_staffing }}</td>
+					<td>{{ pipeline.project_status }}</td>
+					<td>{{ pipeline.project_team }}</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+		<div>
+			<h2> 개인별 프로젝트 참여 현황 </h2>
+			<table>
+				<tr>
+					<th>Name</th>
+					<th>Particapation</th>
+				</tr>
+				{% for p in participation_list %}
+				<tr>
+					<td>{{ p.project_leader }}</td>
+					<td>{{ p.total }}</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+		<div>
+			<h2> 팀별 주관 In-Progress 프로젝트 현황 </h2> 
+			<table>
+				<tr>
+					<th>Project_team</th>
+					<th>Team_total</th>
+				</tr>
+				{% for team in team_list %}
+				<tr>
+					<td>{{ team.project_team }}</td>
+					<td>{{ team.total }}</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</body>
+</html>

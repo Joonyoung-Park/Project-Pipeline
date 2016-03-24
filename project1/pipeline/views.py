@@ -32,7 +32,8 @@ def data_modify(request):
             form.save()
     else:
         form = PipelineForm()
-    return render(request, 'pipeline/data_input.html', {'form': form})
+
+    return render(request, 'pipeline/data_modify.html', {'form': form})
 
         # project = Pipeline.objects. 링크 누른 해당 플젝의 코드를 가지고 최신날짜 플젝정보를 가져온다.
 
@@ -40,8 +41,12 @@ def data_modify(request):
 @login_required
 def project_status(request):
     pipeline_list = Pipeline.objects.all()
-    participation_list = Pipeline.objects.all().values('project_leader', 'project_team').annotate(
-        total=Count('project_leader')).annotate(max('created_at').order_by()
+
+    # 신규 프로젝트 정보가 입력되었을 경우에도 최신 업데이트 사항만을 반영하여 개인별 프로젝트 참여 현황 계산
+    participation_list = Pipeline.objects.all().filter(project_status="In-Progress").values('project_leader', 'project_team', 'project_code_text').annotate(max_created=Max('created_at')).values('project_leader', 'project_team').annotate(total=Count('project_leader'))
+
+    # participation_list = Pipeline.objects.all().filter(project_status="In-Progress").values('project_leader', 'project_team').annotate(
+    #     max_created=Max('created_at'), total=Count('project_leader')).order_by()
     # 팀별 프로젝트 주관 횟수
     # return redirect('blog.views.post_detail', pk=post.pk)
     team_list = Pipeline.objects.all().filter(project_status="In-Progress").values('project_team', 'project_status').annotate(total=Count('project_team')).order_by()

@@ -1,0 +1,9 @@
+{% if latest_frontpage_list %}
+	<ul>
+	{% for frontpage in latest_frontpage_list %}
+		<li><a href="/pipeline/{{ frontpage.frontpage_url }}/">{{ frontpage.frontpage_text }}</a></li>
+	{% endfor %}
+	</ul>
+{% else %}
+	<p>No projects are available.</p>
+{% endif %}
