@@ -25,14 +25,23 @@ def data_input(request):
 
 
 @login_required
-def data_modify(request):
+def data_modify(request, pk):
+    pipeline = get_object_or_404(Pipeline, pk=pk)
     if request.method == "POST":
-        form = PipelineForm(request.POST)
+        form = PipelineForm(request.POST, instance=pipeline)
         if form.is_valid():
-            form.save()
+            pipeline = form.save(commit=False)
+            pipeline.project_name = request.project_name
+            pipeline.start_name = request.start_name
+            pipeline.end_date = request.end_date
+            pipeline.project_leader = request.project_leader
+            pipeline.project_staffing = request.project_staffing
+            pipeline.project_status = request.project_status
+            pipeline.project_team = request.project_team
+            pipeline.save()
+            return redirect('pipeline/views.detail', pk=pipeline.pk)
     else:
-        form = PipelineForm()
-
+        form = PipelineForm(instatnce=pipeline)
     return render(request, 'pipeline/data_modify.html', {'form': form})
 
         # project = Pipeline.objects. 링크 누른 해당 플젝의 코드를 가지고 최신날짜 플젝정보를 가져온다.
