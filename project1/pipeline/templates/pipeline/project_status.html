@@ -39,43 +39,48 @@
             </div>
         </nav>
 
-        <h1> 프로젝트 파이프라인 / 스태핑 현황 </h1>
-		<div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-3 col-md-2 sidebar">
-                    <ul class="nav nav-sidebar">
-                        <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">Reports</a></li>
-                        <li><a href="#">Analytics</a></li>
-                        <li><a href="#">Export</a></li>
-                    </ul>
-                </div>
-            </div>
-		</div>
+{#        <h1> 프로젝트 파이프라인 / 스태핑 현황 </h1>#}
+{#		<div class="container-fluid">#}
+{#            <div class="row">#}
+{#                <div class="col-sm-3 col-md-2 sidebar">#}
+{#                    <ul class="nav nav-sidebar">#}
+{#                        <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>#}
+{#                        <li><a href="#">Reports</a></li>#}
+{#                        <li><a href="#">Analytics</a></li>#}
+{#                        <li><a href="#">Export</a></li>#}
+{#                    </ul>#}
+{#                </div>#}
+{#            </div>#}
+{#		</div>#}
+            <h1></h1>
 			<h2 class="sub-header"> 프로젝트 현황 </h2>
             <div class="table-responsive">
 			<table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Project_Name</th>
+                        <th>Project_id</th>
+                        <th>Project_name</th>
                         <th>Start_date</th>
                         <th>End_date</th>
                         <th>Project_leader</th>
                         <th>Project_staffing</th>
                         <th>Project_status</th>
                         <th>Project_team</th>
+                        <th>Created_at</th>
                     </tr>
                 </thead>
                 {% for pipeline in pipeline_list %}
                 <tbody>
                     <tr>
-                        <td><a href="/pipeline/data_modify/">{{ pipeline.project_name }}</td>
+                        <td>{{ pipeline.id }}</td>
+                        <td><a href="/pipeline/data_modify/{{ pipeline.id }}"/>{{ pipeline.project_name }}</td>
                         <td>{{ pipeline.start_date }}</td>
                         <td>{{ pipeline.end_date }}</td>
                         <td>{{ pipeline.project_leader }}</td>
                         <td>{{ pipeline.project_staffing }}</td>
                         <td>{{ pipeline.project_status }}</td>
                         <td>{{ pipeline.project_team }}</td>
+                        <td>{{ pipeline.created_at }}</td>
                     </tr>
                 </tbody>
                 {% endfor %}
@@ -88,10 +93,10 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Particapation</th>
+                            <th>Participation</th>
                         </tr>
                     </thead>
-                    {% for p in participation_list %}
+                    {% for p in progress_list %}
                         <tbody>
                             <tr>
                                 <td>{{ p.project_leader }}</td>
@@ -111,7 +116,7 @@
                             <th>Team_total</th>
                         </tr>
                     </thead>
-                        {% for team in team_list %}
+                        {% for team in progress_team_list %}
                     <tbody>
                         <tr>
                             <td>{{ team.project_team }}</td>

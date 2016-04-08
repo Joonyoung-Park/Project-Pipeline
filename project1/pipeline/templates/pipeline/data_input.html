@@ -7,14 +7,17 @@
 	<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="/static/admin/css/ie.css" /><![endif]-->
 	<script type="text/javascript">window.__admin_media_prefix__ = "http://127.0.0.1:8000/static/admin/";</script>
 	<script type="text/javascript">window.__admin_utc_offset__ = "32400";</script>
-	<script type="text/javascript" src="http://127.0.0.1:8000/admin/jsi18n/"></script>
-	<script type="text/javascript" src="http://127.0.0.1:8000/static/admin/js/core.js"></script>
-	<script type="text/javascript" src="http://127.0.0.1:8000/static/admin/js/admin/RelatedObjectLookups.js"></script>
-	<script type="text/javascript" src="http://127.0.0.1:8000/static/admin/js/jquery.js"></script>
-	<script type="text/javascript" src="http://127.0.0.1:8000/static/admin/js/jquery.init.js"></script>
-	<script type="text/javascript" src="http://127.0.0.1:8000/static/admin/js/actions.js"></script>
-	<script type="text/javascript" src="http://127.0.0.1:8000/static/admin/js/calendar.js"></script>
-	<script type="text/javascript" src="http://127.0.0.1:8000/static/admin/js/admin/DateTimeShortcuts.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:8000/admin/jsi18n/"></script>
+    <script type="text/javascript" src="http://127.0.0.1:8000/static/admin/js/core.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:8000/static/admin/js/vendor/jquery/jquery.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:8000/static/admin/js/jquery.init.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:8000/static/admin/js/admin/RelatedObjectLookups.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:8000/static/admin/js/actions.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:8000/static/admin/js/urlify.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:8000/static/admin/js/prepopulate.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:8000/static/admin/js/vendor/xregexp/xregexp.min.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:8000/static/admin/js/calendar.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:8000/static/admin/js/admin/DateTimeShortcuts.js"></script>
 	<meta name="robots" content="NONE,NOARCHIVE" />
 </head>
 	
@@ -31,7 +34,12 @@
 <form class="post-form" enctype="multipart/form-data" action="/pipeline/data_input/" method="post" id="pipeline_form" novalidate>{% csrf_token %}
 <div>
   <fieldset class="module aligned ">
-
+        <div class="form-row field-project_code_text">
+                <div>
+                        <label class="required" for="project_code_text">Project code:</label>
+                        <input class="vTextField" id="project_code_text" maxlength="200" name="project_code_text" type="text" value="{{ project_code_text }}" />
+                </div>
+        </div>
         <div class="form-row field-project_name">
                 <div>
                         <label class="required" for="id_project_name">Project name:</label>   

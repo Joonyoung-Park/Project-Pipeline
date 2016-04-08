@@ -68,6 +68,7 @@ DATABASES = {
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'ko-kr'
 
 TIME_ZONE = 'Asia/Seoul'
 
@@ -77,6 +78,12 @@ USE_L10N = True
 
 USE_TZ = True
 
+# from django.utils.translation import ugettext
+# ugettext = lambda s: s
+# DATE_FORMAT = ugettext('Y-m-d')
+# DATE_FORMAT = '%Y-%m-%d'
+
+# FORMAT_MODULE_PATH = 'project1.mysite.formats'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
